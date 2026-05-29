@@ -130,9 +130,9 @@ const translations = {
       packagesTitle: "Пакеты токенов",
       activityTitle: "Операции",
       packages: [
-        { name: "Старт", amount: "25,000 токенов", price: "2,900 ₸", note: "Для личного использования" },
-        { name: "Работа", amount: "80,000 токенов", price: "7,900 ₸", note: "Для частых задач" },
-        { name: "Pro", amount: "220,000 токенов", price: "17,900 ₸", note: "Для бизнеса и команды" },
+        { name: "Старт", amount: "25,000 токенов", price: "2,900 ₽", note: "Для личного использования" },
+        { name: "Работа", amount: "80,000 токенов", price: "7,900 ₽", note: "Для частых задач" },
+        { name: "Pro", amount: "220,000 токенов", price: "17,900 ₽", note: "Для бизнеса и команды" },
       ],
       activity: [
         { label: "Пополнение баланса", value: "+80,000", date: "Сегодня" },
@@ -325,9 +325,9 @@ const translations = {
       packagesTitle: "Токен пакеттері",
       activityTitle: "Операциялар",
       packages: [
-        { name: "Бастау", amount: "25,000 токен", price: "2,900 ₸", note: "Жеке қолдану үшін" },
-        { name: "Жұмыс", amount: "80,000 токен", price: "7,900 ₸", note: "Жиі тапсырмалар үшін" },
-        { name: "Pro", amount: "220,000 токен", price: "17,900 ₸", note: "Бизнес және команда үшін" },
+        { name: "Бастау", amount: "25,000 токен", price: "2,900 ₽", note: "Жеке қолдану үшін" },
+        { name: "Жұмыс", amount: "80,000 токен", price: "7,900 ₽", note: "Жиі тапсырмалар үшін" },
+        { name: "Pro", amount: "220,000 токен", price: "17,900 ₽", note: "Бизнес және команда үшін" },
       ],
       activity: [
         { label: "Баланс толықтыру", value: "+80,000", date: "Бүгін" },
@@ -520,9 +520,9 @@ const translations = {
       packagesTitle: "Token packages",
       activityTitle: "Activity",
       packages: [
-        { name: "Start", amount: "25,000 tokens", price: "2,900 ₸", note: "For personal use" },
-        { name: "Work", amount: "80,000 tokens", price: "7,900 ₸", note: "For frequent tasks" },
-        { name: "Pro", amount: "220,000 tokens", price: "17,900 ₸", note: "For business and teams" },
+        { name: "Start", amount: "25,000 tokens", price: "2,900 ₽", note: "For personal use" },
+        { name: "Work", amount: "80,000 tokens", price: "7,900 ₽", note: "For frequent tasks" },
+        { name: "Pro", amount: "220,000 tokens", price: "17,900 ₽", note: "For business and teams" },
       ],
       activity: [
         { label: "Balance top-up", value: "+80,000", date: "Today" },
