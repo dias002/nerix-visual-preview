@@ -1,27 +1,11 @@
-# Nerix Visual Preview
 
-Public interactive preview for the Nerix AI-agent product concept.
+# Nerix UI/UX Design
 
-## Local Run
+This is a code bundle for the Nerix web app prototype.
 
-```bash
-npm ci
-npm run dev
-```
+## Running the code
 
-## Build
+Run `npm i` to install the dependencies.
 
-```bash
-npm run build
-```
-
-## Screens
-
-- Landing: `/`
-- About: `/#about`
-- Chat: `/#chat`
-- Agents: `/#agents`
-- Balance: `/#balance`
-- Memory: `/#memory`
-- Settings: `/#settings`
-- Collapsed sidebar preview: `/?collapsed=1#chat`
+Run `npm run dev` to start the development server.
+  

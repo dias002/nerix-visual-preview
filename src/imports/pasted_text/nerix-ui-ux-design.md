@@ -1,175 +1,155 @@
-Create a complete UI/UX design for a product called Nerix.
+Create a complete high-fidelity UI/UX design for a futuristic AI platform called “Nerix”.
 
-  Nerix is an AI-agent platform for Kazakhstan and CIS users. The product helps users work with more than 40 AI agents for different formats:
-  text, code, business tasks, education, documents, images, video, music, and automation. The main idea: the user does not need to choose the
-  correct AI model manually. Nerix analyzes the task and routes it to the right agent automatically.
+The design must be inspired by the page architecture and interaction style of Claude.ai, but visually adapted into a black-and-white sci-fi minimalist interface.
 
-  Design style:
-  - Minimalistic premium black interface.
-  - Inspired by MashaGPT and dark sci-fi interfaces, but cleaner and less noisy.
-  - Monochrome space aesthetic: black background, white text, soft gray borders, subtle stars.
-  - Use deep black #000000, dark panels #0A0A0A / #111111, borders #1F1F1F, text white and muted gray.
-  - No colorful gradients, no bright purple/blue SaaS style.
-  - Interface must feel native, simple, and understandable even for a child.
-  - Do not overload with buttons or text.
-  - Use clear icons in sidebar and buttons.
-  - Rounded corners should be restrained, around 8-16px.
-  - Typography: modern sans-serif, similar to Inter or SF Pro.
+Important concept:
+Nerix should feel like one intelligent AI system, not a collection of visible agents.
+Do NOT show AI agents, agent cards, agent avatars, agent grid, or “30 agents” anywhere in the interface.
+The user should only see a clean AI platform with a home page, chat workspace, memory, projects, and settings.
 
-  Important layout rules:
-  - Do not create a top navigation bar on the right side.
-  - Main app navigation must be only in the left sidebar.
-  - Sidebar should contain: Main, Chat, History, Agents, Memory, Balance, Settings.
-  - Add a small button in the sidebar to collapse and expand the sidebar.
-  - At the bottom of sidebar show user profile and token balance.
-  - Chat screen must have a pure black background, no image background.
-  - Landing/about pages may use a subtle space background.
-  - The planet must sit inside its ring correctly, like Saturn, not detached.
-  - Add visual notes for parallax: planet and ring should be separate layers, ring moves slower than planet on scroll, stars move
-  independently.
-  - Add subtle meteor/starfall moments as decorative animation notes.
+Core visual style:
+- Strict black and white color system.
+- Main colors: #000000, #0A0A0A, #111111, #1A1A1A, #2C2C2C, #888888, #FFFFFF.
+- No blue, no colorful gradients, no neon colors.
+- Minimalistic, cinematic, premium, futuristic, monochrome.
+- Sci-fi feeling, but very clean and elegant.
+- Use subtle 3D depth: soft shadows, glass panels, thin white borders, soft glow, floating cards, blurred depth layers.
+- Dynamic black-and-white starry sky as the main visual identity.
+- Backgrounds should feel like animated or scrollable cosmic space: stars, subtle nebula dust, white cosmic lines, black planets, orbit lines, parallax depth.
+- The design must feel smooth, modern, expensive, and calm.
 
-  Create these desktop frames:
-  1. Landing page, 1440x1100
-  2. About / Project explanation page, 1440x1100
-  3. Workspace home, 1440x1100
-  4. Chat page, 1440x1100
-  5. Agents page, 1440x1100
-  6. Balance / token packages page, 1440x1100
-  7. Memory page, 1440x1100
-  8. Settings page, 1440x1100
+Main requirement:
+Create both desktop web app and mobile app screens.
 
-  Create these mobile frames:
-  1. Landing mobile, 390x844
-  2. About mobile, 390x844
-  3. Workspace home mobile, 390x844
-  4. Chat mobile, 390x844
-  5. Agents mobile, 390x844
-  6. Settings mobile, 390x844
+Desktop web app structure:
+1. Landing / Home page
+   - No top navigation.
+   - Large black-and-white dynamic starry sky hero background.
+   - Logo “NERIX” in the top-left corner.
+   - Big headline: “Welcome to Nerix”
+   - Subtitle: “Where intelligence meets the infinite.”
+   - One minimal white CTA button: “Enter”
+   - Use cinematic scroll cues, such as “Scroll to explore”.
+   - Add several scrollable sections below:
+     - “One interface. Infinite thinking.”
+     - “Built for focused conversations.”
+     - “Memory, projects, and context in one workspace.”
+     - Keep everything abstract, no agents shown.
+   - Each section should use different monochrome cosmic background images or abstract 3D sci-fi visuals.
 
-  Landing page content:
-  - Brand: Nerix
-  - Hero headline in Russian: “Nerix подбирает ИИ-агента под вашу задачу”
-  - Supporting text: “Платформа для работы, учебы, бизнеса и личных задач. Вы описываете цель, а Nerix сам помогает выбрать подходящий формат
-  агента.”
-  - Main CTA: “Войти”
-  - Secondary link: “О проекте”
-  - Stats cards:
-    - “40+” / “агентов разных форматов”
-    - “3” / “среды: работа, учеба, бизнес”
-    - “1” / “понятный чат для всех задач”
-  - Add language switcher: RU / KZ / EN.
-  - Make the first screen visually impressive but still minimal.
+2. Chat workspace page
+   - Follow Claude.ai page architecture.
+   - No top navigation.
+   - Use a fixed left sidebar.
+   - Sidebar items:
+     - Home
+     - Chat
+     - Projects
+     - Memory
+     - Settings
+   - Sidebar should be dark, minimal, with thin white/gray icons and active item highlight.
+   - Main chat area:
+     - Big centered text: “How can I assist you today?”
+     - Minimal input field centered below.
+     - Message input should have rounded corners, thin border, dark glass background.
+     - Background should be a black-and-white starfield with a subtle planet or orbital lines on the right.
+   - Add conversation state:
+     - User message bubble
+     - AI response bubble
+     - File upload pill
+     - Loading / thinking animation state
+   - Everything must remain monochrome.
 
-  About page:
-  - Explain that Nerix is not just one chatbot, but a working environment with AI agents.
-  - Add interactive-looking examples for:
-    - Business: documents, sales, support, analytics, individual AI agent for company workflows.
-    - Freelancers: briefs, texts, code, presentations, content ideas.
-    - Education: explanations, tests, summaries, language practice.
-    - Personal tasks: planning, writing, everyday questions.
-  - Add section: “Вы не выбираете вслепую”
-  - Text: “Nerix распределяет агентов по вашим задачам, чтобы вы не боялись выбрать неправильный инструмент.”
-  - Add section: “Можно создать ИИ-агента для бизнеса”
-  - Text: “Для компаний Nerix может стать отдельной средой с агентом, который знает процессы, документы и задачи бизнеса.”
+3. Projects page
+   - Same sidebar.
+   - Main area with simple project cards.
+   - Cards should be dark glass panels with white borders and subtle 3D depth.
+   - No colorful labels.
+   - Use gray hierarchy only.
+   - Example cards:
+     - Project Alpha
+     - Research Notes
+     - Website Brief
+     - Client Context
 
-  Workspace home:
-  - Left sidebar.
-  - Center content:
-    - Title: “Чем я могу помочь?”
-    - Subtitle: “Опишите задачу, а Nerix подскажет подходящий формат агента.”
-    - Main button: “Начать чат”
-    - Scenario cards: “Работа”, “Учеба”, “Бизнес”
-    - App download strip: “Скачайте Nerix” with iOS and Android buttons.
-  - Keep it quiet and functional.
+4. Memory page
+   - Same sidebar.
+   - Search input.
+   - List of memory items in minimal black-and-white cards.
+   - Detail panel for selected memory.
+   - Use clean spacing and thin dividers.
 
-  Chat page:
-  - Pure black background.
-  - Left sidebar.
-  - Top small model selector: “Nerix Pro”
-  - Top right small button: “Новый чат”
-  - Center greeting: “Привет! Я Nerix. Чем могу помочь вам сегодня?”
-  - Suggested prompt chips:
-    - “Составь план проекта”
-    - “Объясни простыми словами”
-    - “Помоги написать текст”
-  - Favorite prompts panel:
-    - “Сделай краткое резюме”
-    - “Переведи на деловой стиль”
-    - “Проверь логику и ошибки”
-    - “Составь список задач”
-  - Bottom message input with attach icon, microphone icon, send icon.
-  - Footer note: “Nerix может допускать ошибки. Проверяйте важную информацию.”
+5. Settings page
+   - Same sidebar.
+   - Sections:
+     - Profile
+     - Appearance
+     - Privacy
+     - Notifications
+     - Account
+   - Toggle switches and segmented controls should be black/white only.
+   - Include a theme selector: Dark / Light, but keep the visual design mostly dark.
 
-  Agents page:
-  - Show agents as simple cards, not too many at once.
-  - Main categories:
-    - “Общий помощник”
-    - “Бизнес”
-    - “Код”
-    - “Учеба”
-    - “Документы”
-    - “Контент”
-    - “Изображения”
-    - “Видео”
-    - “Музыка”
-  - Add a selected agent preview panel.
-  - Explain that Nerix can automatically recommend the right agent.
+Mobile app structure:
+Create mobile frames that match the same product identity:
+1. Mobile Home
+   - Black-and-white dynamic starry sky.
+   - NERIX logo.
+   - “Welcome to Nerix”
+   - CTA button “Enter”
+   - No visible agents.
 
-  Balance page:
-  - Token balance cards:
-    - “12,450” current balance
-    - “38,720” monthly usage
-    - “420” average request cost
-  - Token packages:
-    - “Старт” 2,900 ₸
-    - “Работа” 7,900 ₸
-    - “Pro” 17,900 ₸
-  - Add operation history.
-  - Use tenge symbol ₸.
-  - Make payment UI trustworthy and simple.
+2. Mobile Chat
+   - Claude-like minimal chat architecture adapted for mobile.
+   - Top bar only with NERIX and menu icon.
+   - No top navigation links.
+   - Chat area with starry background, centered prompt, input field at bottom.
+   - Use black glass panels and thin white borders.
 
-  Memory page:
-  - Search field.
-  - Memory list:
-    - “Предпочитает ответы на русском языке.”
-    - “Использует React и Tailwind для фронтенда.”
-    - “Просит объяснять без сложного жаргона.”
-    - “Работает над проектом Nerix.”
-  - Add “Очистить все” button, small and not aggressive.
+3. Mobile Sidebar / Menu
+   - Slide-out side menu.
+   - Items: Home, Chat, Projects, Memory, Settings.
+   - Dark monochrome design.
 
-  Settings page:
-  - Sections:
-    - Profile
-    - Appearance
-    - Notifications
-    - Language
-    - Country
-    - Security
-  - Language selector: Russian, Kazakh, English.
-  - Country selector: Kazakhstan, Russia, Uzbekistan, Kyrgyzstan, Azerbaijan, Armenia, Georgia, Turkey, UAE, USA, Germany, and other countries.
-  - Add note: “Для страны подбираются платежи и доступные модели.”
-  - Keep settings simple like iOS-style rows.
+4. Mobile Projects
+5. Mobile Memory
+6. Mobile Settings
 
-  Mobile:
-  - Use the same design, but sidebar becomes compact icon rail.
-  - Chat input must stay fixed at bottom.
-  - Text must not overflow.
-  - Buttons must be easy to tap.
-  - No visual clutter.
+Layout and interaction:
+- Use auto layout where possible.
+- Use consistent 8px spacing system.
+- Use rounded corners: 16px to 28px.
+- Use thin borders: 1px, #2C2C2C or #444444.
+- Use white text for primary headings.
+- Use gray text for descriptions.
+- Use large empty space and clean hierarchy.
+- Avoid clutter.
+- Avoid colorful UI.
+- Avoid agent-related visuals.
+- Avoid top navigation.
+- Make scrolling feel dynamic and beautiful through parallax-style star backgrounds, floating panels, and depth layers.
 
-  Components to create:
-  - Sidebar expanded
-  - Sidebar collapsed
-  - Chat input
-  - Agent card
-  - Token package card
-  - Settings row
-  - Language switcher
-  - Country selector
-  - App download strip
-  - Prompt chip
-  - Memory item
+Typography:
+- Use a modern sans-serif font similar to Inter, SF Pro, or Satoshi.
+- Headings should be large, clean, and bold.
+- Body text should be small, readable, and gray.
 
-  Final output should look like a real production-ready app, not a marketing concept. Keep it premium, minimal, black, readable, and very close
-  to the current Nerix/MashaGPT-inspired style.
+Deliverables:
+Create multiple Figma frames:
+- Desktop Home
+- Desktop Chat
+- Desktop Projects
+- Desktop Memory
+- Desktop Settings
+- Mobile Home
+- Mobile Chat
+- Mobile Sidebar Menu
+- Mobile Projects
+- Mobile Memory
+- Mobile Settings
+- Component board with buttons, input fields, cards, sidebar items, toggles, and typography.
+- Style guide with black-and-white color palette, spacing, typography, and visual principles.
+
+Overall feeling:
+The product should feel like Claude.ai architecture combined with a black-and-white cinematic sci-fi interface.
+It should feel intelligent, minimal, premium, silent, futuristic, and deeply focused.
