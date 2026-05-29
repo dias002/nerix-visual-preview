@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useLanguage } from "../i18n";
 
 type Star = {
   x: number;
@@ -19,6 +20,7 @@ type Meteor = {
 };
 
 export default function StarsBackground() {
+  const { theme } = useLanguage();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const scrollRef = useRef(0);
   const pointerRef = useRef({ x: 0.5, y: 0.5 });
@@ -72,6 +74,7 @@ export default function StarsBackground() {
     };
 
     const spawnMeteor = () => {
+      if (theme !== "dark") return;
       if (meteors.length < 3 && Math.random() > 0.992) {
         meteors.push({
           x: width * (0.45 + Math.random() * 0.7),
@@ -102,6 +105,7 @@ export default function StarsBackground() {
       const ringX = planetX + ringLag;
       const ringY = planetY + planetRadius * 0.03 + ringLift;
       const ringRotation = Math.PI / 6;
+
       const drawRingSegment = (
         radiusX: number,
         radiusY: number,
@@ -166,16 +170,7 @@ export default function StarsBackground() {
       drawRingSegment(planetRadius * 1.82, planetRadius * 0.32, 7, "rgba(255, 255, 255, 0.14)", 0.12 * Math.PI, 0.88 * Math.PI);
     };
 
-    setCanvasSize();
-    updateScroll();
-    window.addEventListener("resize", setCanvasSize);
-    window.addEventListener("scroll", updateScroll, { passive: true });
-    window.addEventListener("pointermove", updatePointer, { passive: true });
-
-    let animationFrame: number;
-    let time = 0;
-
-    const animate = () => {
+    const drawDarkScene = (time: number) => {
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, width, height);
 
@@ -191,9 +186,7 @@ export default function StarsBackground() {
         const x = star.x - parallaxX + pointerX * star.depth + breathingX;
         const y = star.y - parallaxY + pointerY * star.depth + breathingY;
 
-        if (x < -6 || x > width + 6 || y < -8 || y > height + 8) {
-          return;
-        }
+        if (x < -6 || x > width + 6 || y < -8 || y > height + 8) return;
 
         const twinkle = Math.sin(time * 0.025 + star.phase) * 0.28 + 0.72;
         ctx.beginPath();
@@ -228,14 +221,81 @@ export default function StarsBackground() {
         }
       }
 
-      const gradient = ctx.createRadialGradient(
-        width * 0.5, height * 0.5, 0,
-        width * 0.5, height * 0.5, width * 0.6
-      );
+      const gradient = ctx.createRadialGradient(width * 0.5, height * 0.5, 0, width * 0.5, height * 0.5, width * 0.6);
       gradient.addColorStop(0, "rgba(255, 255, 255, 0.03)");
       gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
+    };
+
+    const drawLightScene = (time: number) => {
+      const sky = ctx.createLinearGradient(0, 0, 0, height);
+      sky.addColorStop(0, "#dfeeff");
+      sky.addColorStop(0.5, "#f2f8ff");
+      sky.addColorStop(1, "#ffffff");
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, width, height);
+
+      const pointerX = (pointerRef.current.x - 0.5) * 10;
+      const pointerY = (pointerRef.current.y - 0.5) * 8;
+      const sunX = width * 0.78 + pointerX;
+      const sunY = height * 0.22 + pointerY;
+      const sunRadius = Math.min(width, height) < 700 ? 70 : 110;
+      const sun = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, sunRadius * 2.1);
+      sun.addColorStop(0, "rgba(255, 216, 96, 0.9)");
+      sun.addColorStop(0.2, "rgba(255, 224, 141, 0.55)");
+      sun.addColorStop(0.52, "rgba(255, 255, 255, 0.28)");
+      sun.addColorStop(1, "rgba(255, 255, 255, 0)");
+      ctx.fillStyle = sun;
+      ctx.fillRect(0, 0, width, height);
+
+      const scroll = scrollRef.current;
+      stars.slice(0, Math.round(stars.length * 0.32)).forEach((star) => {
+        const parallaxX = scroll * star.depth * 0.006;
+        const parallaxY = scroll * star.depth * 0.02;
+        const x = star.x - parallaxX + pointerX * star.depth * 0.5;
+        const y = star.y - parallaxY + pointerY * star.depth * 0.5;
+        if (x < -6 || x > width + 6 || y < -8 || y > height + 8) return;
+
+        const opacity = (Math.sin(time * 0.012 + star.phase) * 0.18 + 0.38) * star.opacity;
+        ctx.beginPath();
+        ctx.arc(x, y, Math.max(0.35, star.radius * 0.8), 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(76, 96, 120, ${opacity * 0.3})`;
+        ctx.fill();
+      });
+
+      ctx.save();
+      ctx.translate(width * 0.82 - scroll * 0.025, height * 0.74);
+      ctx.rotate(-0.16);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, Math.min(width * 0.36, 410), 56, 0, Math.PI, Math.PI * 2);
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = "rgba(77, 92, 112, 0.14)";
+      ctx.stroke();
+      ctx.restore();
+
+      const haze = ctx.createRadialGradient(width * 0.5, height * 0.7, 0, width * 0.5, height * 0.7, width * 0.68);
+      haze.addColorStop(0, "rgba(255, 255, 255, 0)");
+      haze.addColorStop(1, "rgba(198, 216, 232, 0.28)");
+      ctx.fillStyle = haze;
+      ctx.fillRect(0, 0, width, height);
+    };
+
+    setCanvasSize();
+    updateScroll();
+    window.addEventListener("resize", setCanvasSize);
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    window.addEventListener("pointermove", updatePointer, { passive: true });
+
+    let animationFrame: number;
+    let time = 0;
+
+    const animate = () => {
+      if (theme === "light") {
+        drawLightScene(time);
+      } else {
+        drawDarkScene(time);
+      }
 
       time += 1;
       animationFrame = requestAnimationFrame(animate);
@@ -249,15 +309,18 @@ export default function StarsBackground() {
       window.removeEventListener("pointermove", updatePointer);
       cancelAnimationFrame(animationFrame);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <>
       <canvas ref={canvasRef} className="fixed inset-0 z-0 pointer-events-none" />
       <div
-        className="fixed inset-0 z-0 pointer-events-none bg-black/20"
+        className="fixed inset-0 z-0 pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%)",
+          background:
+            theme === "light"
+              ? "linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.42))"
+              : "radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.6) 100%)",
         }}
       />
     </>

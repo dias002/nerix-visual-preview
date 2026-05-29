@@ -114,6 +114,11 @@
     background: #000000;
   }
 
+  [data-theme="light"] body {
+    background: #f3f8fc;
+    color: #10141c;
+  }
+
   /**
   * Default typography styles for HTML elements (h1-h4, p, label, button, input).
   * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
@@ -164,4 +169,79 @@
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
   }
+}
+
+[data-theme="light"] .bg-black,
+[data-theme="light"] .bg-\[\#050505\] {
+  background-color: #f3f8fc !important;
+}
+
+[data-theme="light"] .bg-\[\#070707\]\/85,
+[data-theme="light"] .bg-\[\#0A0A0A\],
+[data-theme="light"] .bg-\[\#0A0A0A\]\/80,
+[data-theme="light"] .bg-\[\#0A0A0A\]\/85,
+[data-theme="light"] .bg-\[\#0A0A0A\]\/95,
+[data-theme="light"] .bg-\[\#0D0D0D\],
+[data-theme="light"] .bg-\[\#111111\],
+[data-theme="light"] .bg-\[\#1A1A1A\] {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="light"] .bg-white\/5,
+[data-theme="light"] .bg-white\/10,
+[data-theme="light"] .bg-white\/\[0\.02\],
+[data-theme="light"] .bg-white\/\[0\.03\],
+[data-theme="light"] .bg-white\/\[0\.05\] {
+  background-color: rgba(255, 255, 255, 0.58) !important;
+}
+
+[data-theme="light"] .bg-black\/20,
+[data-theme="light"] .bg-black\/40,
+[data-theme="light"] .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+[data-theme="light"] .bg-white {
+  background-color: #10141c !important;
+}
+
+[data-theme="light"] .text-white,
+[data-theme="light"] .text-gray-200,
+[data-theme="light"] .text-gray-300 {
+  color: #10141c !important;
+}
+
+[data-theme="light"] .text-gray-400,
+[data-theme="light"] .text-gray-500,
+[data-theme="light"] .text-gray-600 {
+  color: #657181 !important;
+}
+
+[data-theme="light"] .text-black {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .border-white\/5,
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/15,
+[data-theme="light"] .border-white\/20 {
+  border-color: rgba(16, 20, 28, 0.12) !important;
+}
+
+[data-theme="light"] .hover\:text-white:hover {
+  color: #10141c !important;
+}
+
+[data-theme="light"] .hover\:bg-white\/5:hover {
+  background-color: rgba(16, 20, 28, 0.06) !important;
+}
+
+[data-theme="light"] .from-\[\#050505\] {
+  --tw-gradient-from: #f3f8fc var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(243 248 252 / 0) var(--tw-gradient-to-position) !important;
+}
+
+[data-theme="light"] .via-\[\#050505\] {
+  --tw-gradient-to: rgb(243 248 252 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #f3f8fc var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
 }

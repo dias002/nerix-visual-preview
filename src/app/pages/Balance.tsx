@@ -3,7 +3,8 @@ import { CreditCard, TrendingDown, Wallet, Zap } from "lucide-react";
 import { useLanguage } from "../i18n";
 
 export default function Balance() {
-  const { t } = useLanguage();
+  const { t, country, countryLabel, countries, getPackagePrice } = useLanguage();
+  const selectedCountry = countries.find((option) => option.code === country);
 
   const stats = [
     { label: t.balance.currentBalance, value: "12,450", icon: Wallet },
@@ -14,9 +15,14 @@ export default function Balance() {
   return (
     <div className="flex-1 overflow-y-auto bg-[#050505] p-6 md:p-12">
       <div className="mx-auto max-w-5xl space-y-10">
-        <div>
-          <h2 className="text-2xl font-medium text-white">{t.balance.title}</h2>
-          <p className="mt-2 text-gray-400">{t.balance.subtitle}</p>
+        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div>
+            <h2 className="text-2xl font-medium text-white">{t.balance.title}</h2>
+            <p className="mt-2 text-gray-400">{t.balance.subtitle}</p>
+          </div>
+          <div className="w-fit rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300">
+            {countryLabel} · {selectedCountry?.currency}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -50,7 +56,7 @@ export default function Balance() {
               >
                 <div className="flex-1">
                   <h4 className="text-lg font-medium text-white">{pack.name}</h4>
-                  <div className="mt-4 text-2xl font-medium text-white">{pack.price}</div>
+                  <div className="mt-4 text-2xl font-medium text-white">{getPackagePrice(index)}</div>
                   <div className="mt-2 text-sm text-gray-400">{pack.amount}</div>
                   <p className="mt-4 text-sm leading-relaxed text-gray-500">{pack.note}</p>
                 </div>

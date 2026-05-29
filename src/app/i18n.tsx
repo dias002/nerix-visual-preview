@@ -1,12 +1,44 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 
 export type Language = "ru" | "kk" | "en";
+export type CountryCode = "KZ" | "RU" | "OTHER";
+export type ThemeMode = "dark" | "light";
 
 export const languageOptions: Array<{ code: Language; label: string; name: string }> = [
   { code: "ru", label: "RU", name: "Русский" },
   { code: "kk", label: "KZ", name: "Қазақша" },
   { code: "en", label: "EN", name: "English" },
 ];
+
+export const countryOptions: Array<{ code: CountryCode; currency: "KZT" | "RUB" | "USD"; symbol: string }> = [
+  { code: "KZ", currency: "KZT", symbol: "₸" },
+  { code: "RU", currency: "RUB", symbol: "₽" },
+  { code: "OTHER", currency: "USD", symbol: "$" },
+];
+
+const countryLabels: Record<Language, Record<CountryCode, string>> = {
+  ru: {
+    KZ: "Казахстан",
+    RU: "Россия",
+    OTHER: "Другая страна",
+  },
+  kk: {
+    KZ: "Қазақстан",
+    RU: "Ресей",
+    OTHER: "Басқа ел",
+  },
+  en: {
+    KZ: "Kazakhstan",
+    RU: "Russia",
+    OTHER: "Other country",
+  },
+};
+
+const packagePrices: Record<CountryCode, string[]> = {
+  KZ: ["2,900 ₸", "7,900 ₸", "17,900 ₸"],
+  RU: ["2,900 ₽", "7,900 ₽", "17,900 ₽"],
+  OTHER: ["$29", "$79", "$179"],
+};
 
 const translations = {
   ru: {
@@ -130,9 +162,9 @@ const translations = {
       packagesTitle: "Пакеты токенов",
       activityTitle: "Операции",
       packages: [
-        { name: "Старт", amount: "25,000 токенов", price: "2,900 ₽", note: "Для личного использования" },
-        { name: "Работа", amount: "80,000 токенов", price: "7,900 ₽", note: "Для частых задач" },
-        { name: "Pro", amount: "220,000 токенов", price: "17,900 ₽", note: "Для бизнеса и команды" },
+        { name: "Старт", amount: "25,000 токенов", note: "Для личного использования" },
+        { name: "Работа", amount: "80,000 токенов", note: "Для частых задач" },
+        { name: "Pro", amount: "220,000 токенов", note: "Для бизнеса и команды" },
       ],
       activity: [
         { label: "Пополнение баланса", value: "+80,000", date: "Сегодня" },
@@ -162,6 +194,12 @@ const translations = {
       appearance: "Внешний вид",
       notifications: "Уведомления",
       language: "Язык",
+      country: "Страна и валюта",
+      countryHint: "Валюта тарифов меняется по выбранной стране.",
+      theme: "Тема",
+      darkTheme: "Ночь",
+      lightTheme: "День",
+      chooseCountry: "Выберите страну",
       security: "Безопасность",
     },
     download: {
@@ -325,9 +363,9 @@ const translations = {
       packagesTitle: "Токен пакеттері",
       activityTitle: "Операциялар",
       packages: [
-        { name: "Бастау", amount: "25,000 токен", price: "2,900 ₽", note: "Жеке қолдану үшін" },
-        { name: "Жұмыс", amount: "80,000 токен", price: "7,900 ₽", note: "Жиі тапсырмалар үшін" },
-        { name: "Pro", amount: "220,000 токен", price: "17,900 ₽", note: "Бизнес және команда үшін" },
+        { name: "Бастау", amount: "25,000 токен", note: "Жеке қолдану үшін" },
+        { name: "Жұмыс", amount: "80,000 токен", note: "Жиі тапсырмалар үшін" },
+        { name: "Pro", amount: "220,000 токен", note: "Бизнес және команда үшін" },
       ],
       activity: [
         { label: "Баланс толықтыру", value: "+80,000", date: "Бүгін" },
@@ -357,6 +395,12 @@ const translations = {
       appearance: "Сыртқы көрініс",
       notifications: "Хабарламалар",
       language: "Тіл",
+      country: "Ел және валюта",
+      countryHint: "Тариф валютасы таңдалған елге байланысты өзгереді.",
+      theme: "Тақырып",
+      darkTheme: "Түн",
+      lightTheme: "Күн",
+      chooseCountry: "Елді таңдаңыз",
       security: "Қауіпсіздік",
     },
     download: {
@@ -520,9 +564,9 @@ const translations = {
       packagesTitle: "Token packages",
       activityTitle: "Activity",
       packages: [
-        { name: "Start", amount: "25,000 tokens", price: "2,900 ₽", note: "For personal use" },
-        { name: "Work", amount: "80,000 tokens", price: "7,900 ₽", note: "For frequent tasks" },
-        { name: "Pro", amount: "220,000 tokens", price: "17,900 ₽", note: "For business and teams" },
+        { name: "Start", amount: "25,000 tokens", note: "For personal use" },
+        { name: "Work", amount: "80,000 tokens", note: "For frequent tasks" },
+        { name: "Pro", amount: "220,000 tokens", note: "For business and teams" },
       ],
       activity: [
         { label: "Balance top-up", value: "+80,000", date: "Today" },
@@ -552,6 +596,12 @@ const translations = {
       appearance: "Appearance",
       notifications: "Notifications",
       language: "Language",
+      country: "Country and currency",
+      countryHint: "Plan currency changes according to the selected country.",
+      theme: "Theme",
+      darkTheme: "Night",
+      lightTheme: "Day",
+      chooseCountry: "Choose country",
       security: "Security",
     },
     download: {
@@ -601,34 +651,111 @@ type Dictionary = (typeof translations)[Language];
 type LanguageContextValue = {
   language: Language;
   setLanguage: (language: Language) => void;
+  country: CountryCode;
+  setCountry: (country: CountryCode) => void;
+  countryLabel: string;
+  countries: Array<{ code: CountryCode; currency: "KZT" | "RUB" | "USD"; symbol: string; label: string }>;
+  countryConfirmed: boolean;
+  confirmCountry: () => void;
+  theme: ThemeMode;
+  setTheme: (theme: ThemeMode) => void;
+  getPackagePrice: (index: number) => string;
   t: Dictionary;
 };
 
 const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
-const storageKey = "nerix-language";
+const storageKeys = {
+  language: "nerix-language",
+  country: "nerix-country",
+  countryConfirmed: "nerix-country-confirmed",
+  theme: "nerix-theme",
+} as const;
 
 function isLanguage(value: string | null): value is Language {
   return value === "ru" || value === "kk" || value === "en";
 }
 
+function isCountry(value: string | null): value is CountryCode {
+  return value === "KZ" || value === "RU" || value === "OTHER";
+}
+
+function isTheme(value: string | null): value is ThemeMode {
+  return value === "dark" || value === "light";
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     if (typeof window === "undefined") return "ru";
-    const saved = window.localStorage.getItem(storageKey);
-    return isLanguage(saved) ? saved : "ru";
+    const params = new URLSearchParams(window.location.search);
+    const requestedLanguage = params.get("lang");
+    const saved = window.localStorage.getItem(storageKeys.language);
+    return isLanguage(requestedLanguage) ? requestedLanguage : isLanguage(saved) ? saved : "ru";
+  });
+  const [country, setCountryState] = useState<CountryCode>(() => {
+    if (typeof window === "undefined") return "KZ";
+    const params = new URLSearchParams(window.location.search);
+    const requestedCountry = params.get("country")?.toUpperCase() ?? null;
+    const saved = window.localStorage.getItem(storageKeys.country);
+    return isCountry(requestedCountry) ? requestedCountry : isCountry(saved) ? saved : "KZ";
+  });
+  const [countryConfirmed, setCountryConfirmed] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const params = new URLSearchParams(window.location.search);
+    const requestedCountry = params.get("country")?.toUpperCase() ?? null;
+    return isCountry(requestedCountry) || window.localStorage.getItem(storageKeys.countryConfirmed) === "true";
+  });
+  const [theme, setThemeState] = useState<ThemeMode>(() => {
+    if (typeof window === "undefined") return "dark";
+    const params = new URLSearchParams(window.location.search);
+    const requestedTheme = params.get("theme");
+    const saved = window.localStorage.getItem(storageKeys.theme);
+    return isTheme(requestedTheme) ? requestedTheme : isTheme(saved) ? saved : "dark";
   });
 
   useEffect(() => {
-    window.localStorage.setItem(storageKey, language);
+    window.localStorage.setItem(storageKeys.language, language);
   }, [language]);
+
+  useEffect(() => {
+    window.localStorage.setItem(storageKeys.country, country);
+    window.localStorage.setItem(storageKeys.countryConfirmed, String(countryConfirmed));
+  }, [country, countryConfirmed]);
+
+  useEffect(() => {
+    window.localStorage.setItem(storageKeys.theme, theme);
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme === "light" ? "light" : "dark";
+  }, [theme]);
+
+  const setCountry = (nextCountry: CountryCode) => {
+    setCountryState(nextCountry);
+    setCountryConfirmed(true);
+  };
+
+  const countries = useMemo(
+    () => countryOptions.map((option) => ({ ...option, label: countryLabels[language][option.code] })),
+    [language]
+  );
+
+  const countryLabel = countryLabels[language][country];
+  const getPackagePrice = (index: number) => packagePrices[country][index] ?? packagePrices.OTHER[index] ?? "";
 
   const value = useMemo(
     () => ({
       language,
       setLanguage: setLanguageState,
+      country,
+      setCountry,
+      countryLabel,
+      countries,
+      countryConfirmed,
+      confirmCountry: () => setCountryConfirmed(true),
+      theme,
+      setTheme: setThemeState,
+      getPackagePrice,
       t: translations[language],
     }),
-    [language]
+    [language, country, countryLabel, countries, countryConfirmed, theme]
   );
 
   return (

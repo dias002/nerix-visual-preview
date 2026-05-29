@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
-import { User, Palette, Bell, Globe, Shield, ChevronRight } from "lucide-react";
+import { User, Palette, Bell, Globe, Shield, ChevronRight, MapPin } from "lucide-react";
 import LanguageSwitch from "../components/LanguageSwitch";
+import ThemeSwitch from "../components/ThemeSwitch";
 import { useLanguage } from "../i18n";
 
 export default function Settings() {
-  const { t } = useLanguage();
+  const { t, country, setCountry, countries } = useLanguage();
   const settingsGroups = [
     {
       title: t.settings.main,
@@ -18,6 +19,7 @@ export default function Settings() {
       title: t.settings.extra,
       items: [
         { id: "language", label: t.settings.language, icon: Globe },
+        { id: "country", label: t.settings.country, icon: MapPin },
         { id: "security", label: t.settings.security, icon: Shield },
       ]
     }
@@ -55,6 +57,25 @@ export default function Settings() {
                     <div className="flex items-center gap-3">
                       {item.id === "language" ? (
                         <LanguageSwitch />
+                      ) : item.id === "appearance" ? (
+                        <ThemeSwitch />
+                      ) : item.id === "country" ? (
+                        <div className="flex flex-wrap justify-end gap-2">
+                          {countries.map((option) => (
+                            <button
+                              key={option.code}
+                              type="button"
+                              onClick={() => setCountry(option.code)}
+                              className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+                                country === option.code
+                                  ? "border-white/20 bg-white text-black"
+                                  : "border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:text-white"
+                              }`}
+                            >
+                              {option.symbol} {option.label}
+                            </button>
+                          ))}
+                        </div>
                       ) : (
                         <ChevronRight className="w-4 h-4 text-gray-600" />
                       )}

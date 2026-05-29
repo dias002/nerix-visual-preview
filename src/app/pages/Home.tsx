@@ -4,6 +4,7 @@ import { ArrowRight, BookOpen, ChevronDown } from "lucide-react";
 import StarsBackground from "../components/StarsBackground";
 import LanguageSwitch from "../components/LanguageSwitch";
 import DownloadAppBanner from "../components/DownloadAppBanner";
+import ThemeSwitch from "../components/ThemeSwitch";
 import { useLanguage } from "../i18n";
 
 export default function Home() {
@@ -29,8 +30,9 @@ export default function Home() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.35 }}
-        className="fixed right-6 top-8 z-30"
+        className="fixed right-6 top-8 z-30 flex items-center gap-2"
       >
+        <ThemeSwitch compact />
         <LanguageSwitch />
       </motion.div>
 
