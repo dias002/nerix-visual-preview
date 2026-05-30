@@ -46,6 +46,7 @@ const translations = {
     nav: {
       home: "Главная",
       chat: "Чат",
+      projects: "Проекты",
       history: "История",
       agents: "Агенты",
       memory: "Память",
@@ -247,6 +248,7 @@ const translations = {
     nav: {
       home: "Басты бет",
       chat: "Чат",
+      projects: "Жобалар",
       history: "Тарих",
       agents: "Агенттер",
       memory: "Жад",
@@ -448,6 +450,7 @@ const translations = {
     nav: {
       home: "Home",
       chat: "Chat",
+      projects: "Projects",
       history: "History",
       agents: "Agents",
       memory: "Memory",

@@ -13,7 +13,7 @@ export default function Balance() {
   ];
 
   return (
-    <div className="flex-1 overflow-y-auto bg-[#050505] p-6 md:p-12">
+    <div className="h-full overflow-y-auto bg-[#050505] p-5 md:p-12">
       <div className="mx-auto max-w-5xl space-y-10">
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div>

@@ -182,9 +182,26 @@
 [data-theme="light"] .bg-\[\#0A0A0A\]\/85,
 [data-theme="light"] .bg-\[\#0A0A0A\]\/95,
 [data-theme="light"] .bg-\[\#0D0D0D\],
+[data-theme="light"] .bg-\[\#080808\]\/86,
 [data-theme="light"] .bg-\[\#111111\],
+[data-theme="light"] .bg-\[\#111111\]\/60,
+[data-theme="light"] .bg-\[\#111111\]\/68,
+[data-theme="light"] .bg-\[\#111111\]\/70,
+[data-theme="light"] .bg-\[\#111111\]\/72,
+[data-theme="light"] .bg-\[\#151515\],
+[data-theme="light"] .bg-\[\#151515\]\/78,
+[data-theme="light"] .bg-\[\#151515\]\/80,
+[data-theme="light"] .bg-\[\#151515\]\/86,
+[data-theme="light"] .bg-\[\#151515\]\/92,
 [data-theme="light"] .bg-\[\#1A1A1A\] {
   background-color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="light"] .bg-\[\#111111\]\/70,
+[data-theme="light"] .bg-\[\#111111\]\/72,
+[data-theme="light"] .bg-\[\#151515\]\/86,
+[data-theme="light"] .bg-\[\#151515\]\/92 {
+  background-color: rgba(255, 255, 255, 0.84) !important;
 }
 
 [data-theme="light"] .bg-white\/5,
@@ -195,7 +212,10 @@
   background-color: rgba(255, 255, 255, 0.58) !important;
 }
 
+[data-theme="light"] .bg-black\/15,
 [data-theme="light"] .bg-black\/20,
+[data-theme="light"] .bg-black\/25,
+[data-theme="light"] .bg-black\/30,
 [data-theme="light"] .bg-black\/40,
 [data-theme="light"] .bg-black\/60 {
   background-color: rgba(255, 255, 255, 0.7) !important;

@@ -65,7 +65,7 @@ export default function Home() {
 
           <div className="pt-8">
             <Link
-              to="/workspace"
+              to="/workspace/chat"
               className="inline-flex items-center justify-center px-10 py-3.5 rounded-full bg-white text-black text-base font-medium hover:bg-gray-200 transition-colors"
             >
               {t.home.enter}

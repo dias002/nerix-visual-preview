@@ -18,7 +18,7 @@ export default function Agents() {
   const SelectedIcon = selectedAgent.icon;
 
   return (
-    <div className="flex-1 overflow-y-auto bg-[#050505] p-8 md:p-12">
+    <div className="h-full overflow-y-auto bg-[#050505] p-5 md:p-12">
       <div className="max-w-6xl mx-auto space-y-10">
         <div>
           <h2 className="text-2xl font-medium text-white mb-2">{t.agents.title}</h2>

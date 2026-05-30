@@ -4,6 +4,7 @@ import About from "./pages/About";
 import WorkspaceLayout from "./components/WorkspaceLayout";
 import WorkspaceHome from "./pages/WorkspaceHome";
 import Chat from "./pages/Chat";
+import Projects from "./pages/Projects";
 import History from "./pages/History";
 import Agents from "./pages/Agents";
 import Memory from "./pages/Memory";
@@ -28,6 +29,7 @@ export const router = createBrowserRouter(
       children: [
         { index: true, Component: WorkspaceHome },
         { path: "chat", Component: Chat },
+        { path: "projects", Component: Projects },
         { path: "history", Component: History },
         { path: "agents", Component: Agents },
         { path: "memory", Component: Memory },
